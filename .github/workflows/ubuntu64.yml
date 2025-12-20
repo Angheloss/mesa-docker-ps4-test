@@ -164,7 +164,6 @@ jobs:
             llvm-spirv-19 \
             spirv-tools \
             libllvmspirvlib-19-dev \
-            meson-1.5 \
             xutils-dev \
             ninja-build \
             python3-pip \
@@ -192,7 +191,9 @@ jobs:
             zstd \
             cargo
             cargo install bindgen-cli
-
+            pip3 install --user meson
+            PATH=$PATH:~/.local/bin/
+            
       - name: Restore SPIRV-Tools cache
         uses: actions/cache@v4
         with:
