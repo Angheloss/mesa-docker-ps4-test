@@ -284,8 +284,6 @@ jobs:
             -Dgallium-rusticl=true \
             -Dgallium-extra-hud=true \
             -Dgallium-drivers=radeonsi,r600,zink,virgl,softpipe,llvmpipe \
-            -Dgallium-nine=true \
-            -Dgallium-vdpau=enabled \
             -Dgallium-va=enabled \
             -Dopengl=true \
             -Dglx=auto \
@@ -306,7 +304,6 @@ jobs:
             -Dmesa-clc=enabled \
             -Dinstall-mesa-clc=true \
             -Dinstall-precomp-compiler=true \
-            -Dosmesa=true \
             -Dprecomp-compiler=enabled \
             -Dmicrosoft-clc=disabled \
             -Dvalgrind=enabled \
