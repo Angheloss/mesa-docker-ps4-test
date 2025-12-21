@@ -73,7 +73,7 @@ jobs:
          mkdir -p libdrm
          curl -L "https://gitlab.freedesktop.org/mesa/drm/-/archive/${{ env.LATESTDRM_TAG }}/drm-${{ env.LATESTDRM_TAG }}.tar.gz" | tar -xzvf - -C libdrm --strip-components=1
 
-       - name: Cache xf86 repository
+      - name: Cache xf86 repository
         id: cache-xf86
         uses: actions/cache@v4
         with:
