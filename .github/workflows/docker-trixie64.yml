@@ -132,7 +132,12 @@ jobs:
             python3-pydot \
             doxygen \
             xsltproc \
-            xmlto
+            xmlto \
+            build-essential \
+            dh-autoreconf \
+            libusb-1.0-0-dev \
+            cmake \
+            g++
         
       - name: Fetch latest release tags
         id: fetch-latest-release
