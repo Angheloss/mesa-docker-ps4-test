@@ -25,7 +25,7 @@ jobs:
           latestst_tag=$(curl -s "https://api.github.com/repos/KhronosGroup/SPIRV-Tools/releases/latest" | jq -r '.tag_name')
           echo "LATESTST_TAG=$latestst_tag" >> $GITHUB_ENV
 
-           - name: Cache SPIRV-Tools
+      - name: Cache SPIRV-Tools
         id: cache-spirv
         uses: actions/cache@v4
         with:
