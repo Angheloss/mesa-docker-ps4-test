@@ -130,7 +130,9 @@ jobs:
             zstd \
             meson-1.5 \
             python3-pydot \
-            doxygen
+            doxygen \
+            xsltproc \
+            xmlto
         
       - name: Fetch latest release tags
         id: fetch-latest-release
