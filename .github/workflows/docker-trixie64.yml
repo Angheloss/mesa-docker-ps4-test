@@ -370,7 +370,6 @@ jobs:
           DESTDIR='/xf86-video-amdgpu/package-root' ninja -C build64 install
           chown -R 1001:1001 /xf86-video-amdgpu
           
-
       - name: Compress install directory
         working-directory: ./xf86-video-amdgpu/package-root
         run: |
