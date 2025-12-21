@@ -242,6 +242,11 @@ jobs:
         working-directory: ./libdrm
         run: | 
           patch  -Np1 < libdrm.patch
+
+      - name: Patch xf86
+        working-directory: ./xf86-video-amdgpu
+        run: | 
+          patch  -Np1 < xf86-video-amdgpu.patch
           
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -290,6 +295,19 @@ jobs:
               ninja -C build64 && \
               DESTDIR='/libdrm/package-root' ninja -C build64 install && \
               chown -R 1001:1001 /libdrm"
+  
+          docker run \
+            --rm \
+            -v ${{ github.workspace }}/xf86-video-amdgpu:/xf86-video-amdgpu \
+            -w /xf86-video-amdgpu \
+            mesa64 \
+            bash -c "
+              mkdir -p build64 && \
+              meson setup build64 && \
+              meson configure build64 && \
+              ninja -C build64 && \
+              DESTDIR='/xf86-video-amdgpu/package-root' ninja -C build64 install && \
+              chown -R 1001:1001 /xf86-video-amdgpu"
         
       - name: Compress install directory
         working-directory: ./mesa/package-root
@@ -350,25 +368,6 @@ jobs:
         with:
           name: ${{ env.LATESTDRM_TAG }}-PS4.deb
           path: ${{ env.LATESTDRM_TAG }}-PS4.deb
-          
-      - name: Patch xf86
-        working-directory: ./xf86-video-amdgpu
-        run: | 
-          patch  -Np1 < xf86-video-amdgpu.patch
-
-      - name: build xf86
-        working-directory: ./xf86-video-amdgpu
-        run: | 
-          mkdir build64
-          echo "CFLAGS=${CFLAGS/-fno-plt/}" >> $GITHUB_ENV
-          echo "CXXFLAGS=${CXXFLAGS/-fno-plt/}" >> $GITHUB_ENV
-          echo "LDFLAGS=${LDFLAGS/,-z,now/}" >> $GITHUB_ENV
-          source ~/.bashrc
-          meson setup build64
-          meson configure build64
-          ninja -C build64
-          DESTDIR='/xf86-video-amdgpu/package-root' ninja -C build64 install
-          chown -R 1001:1001 /xf86-video-amdgpu
           
       - name: Compress install directory
         working-directory: ./xf86-video-amdgpu/package-root
