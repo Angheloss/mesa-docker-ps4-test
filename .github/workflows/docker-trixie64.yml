@@ -128,7 +128,8 @@ jobs:
             automake \
             libtool \
             zstd \
-            meson-1.5
+            meson-1.5 \
+            python3-pydot
         
       - name: Fetch latest release tags
         id: fetch-latest-release
