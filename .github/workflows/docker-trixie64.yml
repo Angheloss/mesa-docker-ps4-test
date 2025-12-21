@@ -127,7 +127,8 @@ jobs:
             autoconf \
             automake \
             libtool \
-            zstd
+            zstd \
+            meson-1.5
         
       - name: Fetch latest release tags
         id: fetch-latest-release
