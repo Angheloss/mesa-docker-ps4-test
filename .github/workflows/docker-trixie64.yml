@@ -129,7 +129,8 @@ jobs:
             libtool \
             zstd \
             meson-1.5 \
-            python3-pydot
+            python3-pydot \
+            doxygen
         
       - name: Fetch latest release tags
         id: fetch-latest-release
