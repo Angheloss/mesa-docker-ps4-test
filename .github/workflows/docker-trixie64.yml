@@ -226,6 +226,7 @@ jobs:
         run: |
           cp mesa.patch ../mesa
           cp libdrm.patch ../libdrm
+          cp xf86-video-amdgpu.patch ../xf86-video-amdgpu
 
       - name: Patch Mesa
         working-directory: ./mesa
