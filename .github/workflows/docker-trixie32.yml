@@ -135,7 +135,7 @@ jobs:
             mesa32 \
             bash -c "
             mkdir -p build32 && \
-            meson setup build32 --buildtype=release -Dprefix=/usr -Dplatforms=x11,wayland -Dvulkan-drivers=amd,swrast,virtio -Dshader-cache=enabled -Dshader-cache-max-size=8G -Dvulkan-layers=device-select,overlay,screenshot -Dgallium-extra-hud=true -Dgallium-drivers=radeonsi,r600,zink,virgl,softpipe,llvmpipe -Dopengl=true -Dgles1=enabled -Dgles2=enabled -Degl=enabled -Dllvm=enabled -Dlmsensors=enabled -Dglx=dri -Dtools=glsl,nir -Dgallium-va=enabled -Dglvnd=enabled -Dgbm=enabled -Dlibunwind=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc,av1dec,av1enc,vp9dec -Dlegacy-x11=dri2 -Dteflon=true -Dzstd=enabled -Dshared-glapi=enabled -Dmicrosoft-clc=disabled -Dvalgrind=disabled && \
+            meson setup build32 --buildtype=release -Dandroid-libbacktrace=disabled -Db_ndebug=true -Db_lto=false -Degl=enabled -Dgallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,softpipe,llvmpipe,i915,iris,crocus,zink -Dgallium-extra-hud=true -Dgallium-rusticl=${_rusticl} -Dgallium-va=enabled -Dgbm=enabled -Dgles1=disabled -Dgles2=enabled -Dglvnd=enabled -Dglx=dri -Dlibunwind=enabled -Dllvm=enabled -Dlmsensors=enabled -Dmicrosoft-clc=disabled -Dplatforms=x11,wayland -Dvalgrind=disabled -Dvideo-codecs=all -Dvulkan-drivers=amd,intel,intel_hasvk,swrast,virtio,nouveau -Dvulkan-layers=device-select,intel-nullhw,overlay,anti-lag -Dtools=[] -Dzstd=enabled -Dbuildtype=plain --wrap-mode=nofallback --force-fallback-for=syn,paste,rustc-hash -Dprefix=/usr -Dsysconfdir=/etc -Dlegacy-x11=dri2 && \
             meson configure build32 && \
             ninja -C build32 && \
             DESTDIR='/mesa/package-root' ninja -C build32 install && \
@@ -149,7 +149,7 @@ jobs:
             mesa32 \
             bash -c "
               mkdir -p build32 && \
-              meson setup build32 -Dsysconfdir=/etc -Dprefix=/usr --buildtype plain -Dudev=false -Dvalgrind=disabled -Dintel=enabled && \
+              meson setup build32 --prefix /usr --buildtype plain --wrap-mode nofallback -Dudev=false -Dvalgrind=di && \
               meson configure build32 && \
               ninja -C build32 && \
               DESTDIR='/libdrm/package-root' ninja -C build32 install && \
